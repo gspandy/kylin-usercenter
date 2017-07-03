@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UserLoginHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UserLoginHistory" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="LOGIN_IP" property="loginIp" jdbcType="VARCHAR" />
+    <result column="LOGIN_TYPE" property="loginType" jdbcType="TINYINT" />
+    <result column="LONG_SOURCE" property="longSource" jdbcType="TINYINT" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, USER_INFO_ID, LOGIN_IP, LOGIN_TYPE, LONG_SOURCE, CREATED_TIME
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_USER_LOGIN_HISTORY
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_USER_LOGIN_HISTORY
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UserLoginHistory" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_USER_LOGIN_HISTORY (USER_INFO_ID, LOGIN_IP, LOGIN_TYPE, 
+      LONG_SOURCE, CREATED_TIME)
+    values (#{userInfoId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR}, #{loginType,jdbcType=TINYINT}, 
+      #{longSource,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.UserLoginHistory" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_USER_LOGIN_HISTORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        USER_INFO_ID,
+      </if>
+      <if test="loginIp != null" >
+        LOGIN_IP,
+      </if>
+      <if test="loginType != null" >
+        LOGIN_TYPE,
+      </if>
+      <if test="longSource != null" >
+        LONG_SOURCE,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null" >
+        #{loginType,jdbcType=TINYINT},
+      </if>
+      <if test="longSource != null" >
+        #{longSource,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UserLoginHistory" >
+    update UC_USER_LOGIN_HISTORY
+    <set >
+      <if test="userInfoId != null" >
+        USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="loginIp != null" >
+        LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null" >
+        LOGIN_TYPE = #{loginType,jdbcType=TINYINT},
+      </if>
+      <if test="longSource != null" >
+        LONG_SOURCE = #{longSource,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UserLoginHistory" >
+    update UC_USER_LOGIN_HISTORY
+    set USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      LOGIN_TYPE = #{loginType,jdbcType=TINYINT},
+      LONG_SOURCE = #{longSource,jdbcType=TINYINT},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

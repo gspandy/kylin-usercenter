@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.PersonInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.PersonInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="USER_CNAME" property="userCname" jdbcType="VARCHAR" />
+    <result column="USER_ENAME" property="userEname" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="TINYINT" />
+    <result column="GENDER" property="gender" jdbcType="CHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+    <result column="ID_NUMBER" property="idNumber" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="FIXED_PHONE" property="fixedPhone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="HANDLER_FAX" property="handlerFax" jdbcType="VARCHAR" />
+    <result column="NATIONAL" property="national" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="POLITICAL_STATUS" property="politicalStatus" jdbcType="VARCHAR" />
+    <result column="INDUSTRY" property="industry" jdbcType="VARCHAR" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ATTRIBUTE" property="companyAttribute" jdbcType="VARCHAR" />
+    <result column="COMPANY_PHONE" property="companyPhone" jdbcType="VARCHAR" />
+    <result column="JOB_ATTRIBUTE" property="jobAttribute" jdbcType="VARCHAR" />
+    <result column="OCCUPATION" property="occupation" jdbcType="VARCHAR" />
+    <result column="MARRIAGE" property="marriage" jdbcType="VARCHAR" />
+    <result column="FAMILY_SIZE" property="familySize" jdbcType="TINYINT" />
+    <result column="PERSON_INCOME" property="personIncome" jdbcType="VARCHAR" />
+    <result column="FAMILY_INCOME" property="familyIncome" jdbcType="VARCHAR" />
+    <result column="COME_FROM" property="comeFrom" jdbcType="VARCHAR" />
+    <result column="QQ_NUMBER" property="qqNumber" jdbcType="VARCHAR" />
+    <result column="WECHAT_NUMBER" property="wechatNumber" jdbcType="VARCHAR" />
+    <result column="WEBO_NUMBER" property="weboNumber" jdbcType="VARCHAR" />
+    <result column="ISAUTHOR" property="isauthor" jdbcType="TINYINT" />
+    <result column="OTHERINFO1" property="otherinfo1" jdbcType="VARCHAR" />
+    <result column="OTHERINFO2" property="otherinfo2" jdbcType="VARCHAR" />
+    <result column="OTHERINFO3" property="otherinfo3" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+ 
+  
+  <sql id="Base_Column_List" >
+    ID, USER_INFO_ID, USER_CNAME, USER_ENAME, USER_TYPE, GENDER, BIRTHDAY, ID_NUMBER, 
+    ADDRESS, MOBILE_PHONE, FIXED_PHONE, EMAIL, HANDLER_FAX, NATIONAL, PROVINCE, CITY, 
+    DISTRICT, ZIP_CODE, EDUCATION, POLITICAL_STATUS, INDUSTRY, COMPANY_NAME, COMPANY_ATTRIBUTE, 
+    COMPANY_PHONE, JOB_ATTRIBUTE, OCCUPATION, MARRIAGE, FAMILY_SIZE, PERSON_INCOME, FAMILY_INCOME, 
+    COME_FROM, QQ_NUMBER, WECHAT_NUMBER, WEBO_NUMBER, ISAUTHOR, OTHERINFO1, OTHERINFO2, 
+    OTHERINFO3, REMARK, CREATED_TIME, UPDATED_TIME
+  </sql>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_PERSON_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_PERSON_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.PersonInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_PERSON_INFO (USER_INFO_ID, USER_CNAME, USER_ENAME, 
+      USER_TYPE, GENDER, BIRTHDAY, 
+      ID_NUMBER, ADDRESS, MOBILE_PHONE, 
+      FIXED_PHONE, EMAIL, HANDLER_FAX, 
+      NATIONAL, PROVINCE, CITY, 
+      DISTRICT, ZIP_CODE, EDUCATION, 
+      POLITICAL_STATUS, INDUSTRY, COMPANY_NAME, 
+      COMPANY_ATTRIBUTE, COMPANY_PHONE, JOB_ATTRIBUTE, 
+      OCCUPATION, MARRIAGE, FAMILY_SIZE, 
+      PERSON_INCOME, FAMILY_INCOME, COME_FROM, 
+      QQ_NUMBER, WECHAT_NUMBER, WEBO_NUMBER, 
+      ISAUTHOR, OTHERINFO1, OTHERINFO2, 
+      OTHERINFO3, REMARK, CREATED_TIME, 
+      UPDATED_TIME)
+    values (#{userInfoId,jdbcType=BIGINT}, #{userCname,jdbcType=VARCHAR}, #{userEname,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=TINYINT}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, 
+      #{idNumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{fixedPhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{handlerFax,jdbcType=VARCHAR}, 
+      #{national,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{politicalStatus,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyAttribute,jdbcType=VARCHAR}, #{companyPhone,jdbcType=VARCHAR}, #{jobAttribute,jdbcType=VARCHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, #{familySize,jdbcType=TINYINT}, 
+      #{personIncome,jdbcType=VARCHAR}, #{familyIncome,jdbcType=VARCHAR}, #{comeFrom,jdbcType=VARCHAR}, 
+      #{qqNumber,jdbcType=VARCHAR}, #{wechatNumber,jdbcType=VARCHAR}, #{weboNumber,jdbcType=VARCHAR}, 
+      #{isauthor,jdbcType=TINYINT}, #{otherinfo1,jdbcType=VARCHAR}, #{otherinfo2,jdbcType=VARCHAR}, 
+      #{otherinfo3,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.PersonInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_PERSON_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        USER_INFO_ID,
+      </if>
+      <if test="userCname != null" >
+        USER_CNAME,
+      </if>
+      <if test="userEname != null" >
+        USER_ENAME,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="idNumber != null" >
+        ID_NUMBER,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE,
+      </if>
+      <if test="fixedPhone != null" >
+        FIXED_PHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="handlerFax != null" >
+        HANDLER_FAX,
+      </if>
+      <if test="national != null" >
+        NATIONAL,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="district != null" >
+        DISTRICT,
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE,
+      </if>
+      <if test="education != null" >
+        EDUCATION,
+      </if>
+      <if test="politicalStatus != null" >
+        POLITICAL_STATUS,
+      </if>
+      <if test="industry != null" >
+        INDUSTRY,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="companyAttribute != null" >
+        COMPANY_ATTRIBUTE,
+      </if>
+      <if test="companyPhone != null" >
+        COMPANY_PHONE,
+      </if>
+      <if test="jobAttribute != null" >
+        JOB_ATTRIBUTE,
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION,
+      </if>
+      <if test="marriage != null" >
+        MARRIAGE,
+      </if>
+      <if test="familySize != null" >
+        FAMILY_SIZE,
+      </if>
+      <if test="personIncome != null" >
+        PERSON_INCOME,
+      </if>
+      <if test="familyIncome != null" >
+        FAMILY_INCOME,
+      </if>
+      <if test="comeFrom != null" >
+        COME_FROM,
+      </if>
+      <if test="qqNumber != null" >
+        QQ_NUMBER,
+      </if>
+      <if test="wechatNumber != null" >
+        WECHAT_NUMBER,
+      </if>
+      <if test="weboNumber != null" >
+        WEBO_NUMBER,
+      </if>
+      <if test="isauthor != null" >
+        ISAUTHOR,
+      </if>
+      <if test="otherinfo1 != null" >
+        OTHERINFO1,
+      </if>
+      <if test="otherinfo2 != null" >
+        OTHERINFO2,
+      </if>
+      <if test="otherinfo3 != null" >
+        OTHERINFO3,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="userCname != null" >
+        #{userCname,jdbcType=VARCHAR},
+      </if>
+      <if test="userEname != null" >
+        #{userEname,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPhone != null" >
+        #{fixedPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerFax != null" >
+        #{handlerFax,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatus != null" >
+        #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAttribute != null" >
+        #{companyAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="jobAttribute != null" >
+        #{jobAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="familySize != null" >
+        #{familySize,jdbcType=TINYINT},
+      </if>
+      <if test="personIncome != null" >
+        #{personIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="familyIncome != null" >
+        #{familyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="comeFrom != null" >
+        #{comeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNumber != null" >
+        #{qqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNumber != null" >
+        #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="weboNumber != null" >
+        #{weboNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthor != null" >
+        #{isauthor,jdbcType=TINYINT},
+      </if>
+      <if test="otherinfo1 != null" >
+        #{otherinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo2 != null" >
+        #{otherinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo3 != null" >
+        #{otherinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.PersonInfo" >
+    update UC_PERSON_INFO
+    <set >
+      <if test="userInfoId != null" >
+        USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="userCname != null" >
+        USER_CNAME = #{userCname,jdbcType=VARCHAR},
+      </if>
+      <if test="userEname != null" >
+        USER_ENAME = #{userEname,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idNumber != null" >
+        ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPhone != null" >
+        FIXED_PHONE = #{fixedPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerFax != null" >
+        HANDLER_FAX = #{handlerFax,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        NATIONAL = #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatus != null" >
+        POLITICAL_STATUS = #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAttribute != null" >
+        COMPANY_ATTRIBUTE = #{companyAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        COMPANY_PHONE = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="jobAttribute != null" >
+        JOB_ATTRIBUTE = #{jobAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        MARRIAGE = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="familySize != null" >
+        FAMILY_SIZE = #{familySize,jdbcType=TINYINT},
+      </if>
+      <if test="personIncome != null" >
+        PERSON_INCOME = #{personIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="familyIncome != null" >
+        FAMILY_INCOME = #{familyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="comeFrom != null" >
+        COME_FROM = #{comeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNumber != null" >
+        QQ_NUMBER = #{qqNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatNumber != null" >
+        WECHAT_NUMBER = #{wechatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="weboNumber != null" >
+        WEBO_NUMBER = #{weboNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthor != null" >
+        ISAUTHOR = #{isauthor,jdbcType=TINYINT},
+      </if>
+      <if test="otherinfo1 != null" >
+        OTHERINFO1 = #{otherinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo2 != null" >
+        OTHERINFO2 = #{otherinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo3 != null" >
+        OTHERINFO3 = #{otherinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.PersonInfo" >
+    update UC_PERSON_INFO
+    set USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      USER_CNAME = #{userCname,jdbcType=VARCHAR},
+      USER_ENAME = #{userEname,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=TINYINT},
+      GENDER = #{gender,jdbcType=CHAR},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      FIXED_PHONE = #{fixedPhone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      HANDLER_FAX = #{handlerFax,jdbcType=VARCHAR},
+      NATIONAL = #{national,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      POLITICAL_STATUS = #{politicalStatus,jdbcType=VARCHAR},
+      INDUSTRY = #{industry,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_ATTRIBUTE = #{companyAttribute,jdbcType=VARCHAR},
+      COMPANY_PHONE = #{companyPhone,jdbcType=VARCHAR},
+      JOB_ATTRIBUTE = #{jobAttribute,jdbcType=VARCHAR},
+      OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      MARRIAGE = #{marriage,jdbcType=VARCHAR},
+      FAMILY_SIZE = #{familySize,jdbcType=TINYINT},
+      PERSON_INCOME = #{personIncome,jdbcType=VARCHAR},
+      FAMILY_INCOME = #{familyIncome,jdbcType=VARCHAR},
+      COME_FROM = #{comeFrom,jdbcType=VARCHAR},
+      QQ_NUMBER = #{qqNumber,jdbcType=VARCHAR},
+      WECHAT_NUMBER = #{wechatNumber,jdbcType=VARCHAR},
+      WEBO_NUMBER = #{weboNumber,jdbcType=VARCHAR},
+      ISAUTHOR = #{isauthor,jdbcType=TINYINT},
+      OTHERINFO1 = #{otherinfo1,jdbcType=VARCHAR},
+      OTHERINFO2 = #{otherinfo2,jdbcType=VARCHAR},
+      OTHERINFO3 = #{otherinfo3,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_PERSON_INFO
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </select>
+  
+</mapper>

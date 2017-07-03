@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UserInfoMapper" >
+	
+	  <resultMap type="PersonInfo" id="personResultMap">
+        <!-- 属性名和数据库列名映射 -->
+         <id column="ID" property="id" jdbcType="BIGINT" />
+         <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+         <result column="USER_CNAME" property="userCname" jdbcType="VARCHAR" />
+         <result column="USER_ENAME" property="userEname" jdbcType="VARCHAR" />
+         <result column="ID_NUMBER" property="idNumber" jdbcType="VARCHAR" />
+         
+    </resultMap>
+    
+
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UserInfo" >
+    <id column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="CAAS_USER_CODE" property="caasUserCode" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="TINYINT" />
+    <result column="STATUS" property="status" jdbcType="TINYINT" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />   
+    <association property="personInfo" javaType="PersonInfo" resultMap="personResultMap"/> 
+  </resultMap>
+  
+ 
+  <sql id="Base_Column_List" >
+    USER_INFO_ID, USER_ID,USER_CODE,CAAS_USER_CODE, LOGIN_NAME, USER_TYPE, STATUS, VERSION, CREATED_TIME, UPDATED_TIME
+  </sql>
+  
+ 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_USER_INFO
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="userInfoId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_USER_INFO (USER_ID, USER_CODE, CAAS_USER_CODE, USER_TYPE, 
+      STATUS, VERSION, CREATED_TIME, 
+      UPDATED_TIME)
+    values (#{userId,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{caasUserCode,jdbcType=VARCHAR}, #{userType,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{version,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+ 
+  
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userInfoId" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+  
+    insert into UC_USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="caasUserCode != null" >
+        CAAS_USER_CODE,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caasUserCode != null" >
+        #{caasUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+ 
+ 
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+    update UC_USER_INFO
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caasUserCode != null" >
+        CAAS_USER_CODE = #{caasUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+    update UC_USER_INFO
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_CODE = #{userCode,jdbcType=VARCHAR},
+      CAAS_USER_CODE = #{caasUserCode,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=TINYINT},
+      STATUS = #{status,jdbcType=TINYINT},
+      VERSION = #{version,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </update>
+  
+  
+ 
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  
+   SELECT a.*,b.USER_CNAME,b.ID_NUMBER from UC_USER_INFO a,UC_PERSON_INFO b
+    where a.USER_INFO_ID=b.USER_INFO_ID and a.USER_INFO_ID=#{userInfoId,jdbcType=BIGINT} 
+   
+  </select>
+  
+   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  
+   SELECT a.*,b.USER_CNAME,b.ID_NUMBER from UC_USER_INFO a LEFT JOIN UC_PERSON_INFO b
+    ON a.USER_INFO_ID=b.USER_INFO_ID WHERE a.USER_ID=#{userId,jdbcType=VARCHAR} 
+   
+  </select>
+  
+</mapper>

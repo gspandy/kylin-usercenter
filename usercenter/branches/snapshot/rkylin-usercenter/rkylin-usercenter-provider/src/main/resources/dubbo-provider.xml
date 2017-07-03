@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">
+
+
+	<dubbo:service
+		interface="com.rongcapital.usercenter.api.service.UserCenterService"
+		ref="userCenterServiceImpl" retries="0" version="1.0.0" />
+	<dubbo:service
+		interface="com.rongcapital.usercenter.api.service.UcService"
+		ref="ucServiceImpl" retries="0" version="1.0.0" />
+
+	<dubbo:service
+		interface="com.rongcapital.usercenter.api.service.UserRegiestAndLoginService"
+		ref="userRegiestAndLoginServiceImpl" retries="0" version="1.0.0" />
+
+
+	<dubbo:service
+		interface="com.rongcapital.usercenter.api.service.UserRegistAndLoginService"
+		ref="userRegistAndLoginServiceImpl" retries="0" version="1.0.0" />
+
+	<dubbo:service
+		interface="com.rongcapital.usercenter.api.service.UcLoanService"
+		ref="ucLoanServiceImpl" retries="0" version="1.0.0" />
+
+
+</beans>

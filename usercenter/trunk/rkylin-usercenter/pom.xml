@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+		<groupId>com.rkylin</groupId>
+		<artifactId>rkylin-supom</artifactId>
+		<version>2.0.2</version>
+	</parent>
+	
+  
+  <groupId>com.rkylin.usercenter</groupId>
+  <artifactId>rkylin-usercenter</artifactId>
+  <version>1.2.2</version>
+  <packaging>pom</packaging>
+ 
+ 
+ 
+  <modules>
+  	<module>rkylin-usercenter-api</module>
+  	<module>rkylin-usercenter-provider</module>
+    <module>rkylin-usercenter-web</module>
+    <module>rkylin-usercenter-util</module>
+  </modules>
+  
+   <properties>
+		<!-- true忽略，false执行 -->
+		<maven.test.skip>false</maven.test.skip>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<maven.deploy.skip>false</maven.deploy.skip>
+		<nexus.url>121.40.68.238:8081</nexus.url>
+	</properties>
+	<!-- 设定除中央仓库repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找 -->
+	<repositories>
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址 -->
+		<repository>
+			<id>nexus</id>
+			<name>internal nexus repository</name>
+			<url>http://${nexus.url}/nexus/content/groups/public</url>
+		</repository>
+	</repositories>  
+  <dependencies>
+	  <!-- 添加zk -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+
+
+		<!-- curator -->
+		<dependency>
+			<groupId>com.netflix.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>1.1.10</version>
+		</dependency>
+		
+
+		<!-- dubbo 服务注册方式 start -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.netty</groupId>
+			<artifactId>netty</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<!-- dubbo 服务注册方式 end -->
+
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- 解决子项识别不出来execution问题 -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange> [1.7,)</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-resources-plugin</artifactId>
+										<versionRange> [2.5,)</versionRange>
+										<goals>
+											<goal>resources</goal>
+											<goal> testResources </goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>properties-maven-plugin</artifactId>
+										<versionRange> [1.0-alpha-2,)</versionRange>
+										<goals>
+											<goal>read-project-properties</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.cxf</groupId>
+										<artifactId>cxf-codegen-plugin</artifactId>
+										<versionRange> [2.2,)</versionRange>
+										<goals>
+											<goal>wsdl2java</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>hibernate3-maven-plugin</artifactId>
+										<versionRange> [3.0,)</versionRange>
+										<goals>
+											<goal>hbm2ddl</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-ear-plugin</artifactId>
+										<versionRange> [2.6,)</versionRange>
+										<goals>
+											<goal>generate-application-xml</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>sql-maven-plugin</artifactId>
+										<versionRange> [1.5,)</versionRange>
+										<goals>
+											<goal>execute</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>dbunit-maven-plugin</artifactId>
+										<versionRange> [1.0-beta-3,)</versionRange>
+										<goals>
+											<goal>operation</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.0,)</versionRange>
+										<goals>
+											<goal>unpack</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<!-- eclipse插件, 设定下载依赖包的source code -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<wtpversion>2.0</wtpversion>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>${maven.deploy.skip}</skip>
+				</configuration>
+			</plugin>
+			<!-- compiler插件, 设定JDK版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<showWarnings>true</showWarnings>
+					<skip>${maven.test.skip}</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+</project>

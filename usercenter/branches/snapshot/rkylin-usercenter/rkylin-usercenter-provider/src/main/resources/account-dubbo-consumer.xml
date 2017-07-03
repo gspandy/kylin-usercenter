@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">
+
+
+	<!--账户新接口-->
+	<dubbo:reference  id="finanacePersonApi" interface="com.rkylin.wheatfield.api.FinanacePersonApi" version="0.0.0" group="${account.dubbo.group}" check="false"/>
+	
+	<dubbo:reference  id="accountManageDubboService" interface="com.rkylin.wheatfield.api.AccountManageDubboService" version="0.0.0" group="${account.dubbo.group}" check="false"/>
+
+</beans>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UcOrgMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UcOrgMapping" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="ORG_CODE_ACTUAL" property="orgCodeActual" jdbcType="VARCHAR" />
+    <result column="ORG_CODE_VIRTUAL" property="orgCodeVirtual" jdbcType="VARCHAR" />
+    <result column="MECHANT_NAME" property="mechantName" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, LOGIN_NAME, ORG_CODE_ACTUAL, ORG_CODE_VIRTUAL,MECHANT_NAME, CREATED_TIME, UPDATED_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMappingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UC_ORG_MAPPING
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_ORG_MAPPING
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_ORG_MAPPING
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMappingExample" >
+    delete from UC_ORG_MAPPING
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMapping" >
+    insert into UC_ORG_MAPPING (ID, LOGIN_NAME, ORG_CODE_ACTUAL, 
+      ORG_CODE_VIRTUAL, MECHANT_NAME,CREATED_TIME, UPDATED_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{orgCodeActual,jdbcType=VARCHAR}, 
+      #{orgCodeVirtual,jdbcType=VARCHAR}, #{mechantName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMapping" >
+    insert into UC_ORG_MAPPING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="orgCodeActual != null" >
+        ORG_CODE_ACTUAL,
+      </if>
+      <if test="orgCodeVirtual != null" >
+        ORG_CODE_VIRTUAL,
+      </if>
+      <if test="mechantName != null" >
+        MECHANT_NAME,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCodeActual != null" >
+        #{orgCodeActual,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCodeVirtual != null" >
+        #{orgCodeVirtual,jdbcType=VARCHAR},
+      </if>
+      <if test="mechantName != null" >
+        #{mechantName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMappingExample" resultType="java.lang.Integer" >
+    select count(*) from UC_ORG_MAPPING
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UC_ORG_MAPPING
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.loginName != null" >
+        LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCodeActual != null" >
+        ORG_CODE_ACTUAL = #{record.orgCodeActual,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCodeVirtual != null" >
+        ORG_CODE_VIRTUAL = #{record.orgCodeVirtual,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mechantName != null" >
+        MECHANT_NAME = #{record.mechantName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null" >
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UC_ORG_MAPPING
+    set ID = #{record.id,jdbcType=BIGINT},
+      LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      ORG_CODE_ACTUAL = #{record.orgCodeActual,jdbcType=VARCHAR},
+      ORG_CODE_VIRTUAL = #{record.orgCodeVirtual,jdbcType=VARCHAR},
+      MECHANT_NAME = #{record.mechantName,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMapping" >
+    update UC_ORG_MAPPING
+    <set >
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCodeActual != null" >
+        ORG_CODE_ACTUAL = #{orgCodeActual,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCodeVirtual != null" >
+        ORG_CODE_VIRTUAL = #{orgCodeVirtual,jdbcType=VARCHAR},
+      </if>
+       <if test="mechantName != null" >
+        MECHANT_NAME = #{mechantName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UcOrgMapping" >
+    update UC_ORG_MAPPING
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      ORG_CODE_ACTUAL = #{orgCodeActual,jdbcType=VARCHAR},
+      ORG_CODE_VIRTUAL = #{orgCodeVirtual,jdbcType=VARCHAR},
+      MECHANT_NAME = #{mechantName,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

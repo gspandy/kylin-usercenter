@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.rkylin.usercenter</groupId>
+    <artifactId>rkylin-usercenter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.rkylin.usercenter</groupId>
+  <artifactId>rkylin-usercenter-util</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>rkylin-usercenter-util</name>
+  <url>http://maven.apache.org</url>
+ <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <resteasy.version>3.0.11.Final</resteasy.version>
+    </properties>
+  <dependencies>
+  	
+  	<dependency>
+  		<groupId>com.rkylin.usercenter</groupId>
+	  <artifactId>rkylin-usercenter-api</artifactId>
+	  <version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	
+     <!-- CAAS -->
+     	<dependency>
+			<groupId>cn.rongcapital.caas</groupId>
+			<artifactId>caas-api</artifactId>
+			<version>1.5.0</version>
+			<classifier>jdk17</classifier>
+		</dependency>
+
+		<!-- <dependency> <groupId>cn.rongcapital.caas</groupId> <artifactId>caas-agent</artifactId> 
+			<version>1.3.0</version> <classifier>jdk17</classifier> </dependency> -->
+		<dependency>
+			<groupId>cn.rongcapital.caas</groupId>
+			<artifactId>caas-agent</artifactId>
+			<version>1.5.1</version>
+			<classifier>jdk17</classifier>
+		</dependency>
+        
+          
+        <!-- service platform commons -->
+        <dependency>
+            <groupId>com.ruixue.serviceplatform</groupId>
+            <artifactId>service-platform-commons</artifactId>
+            <version>1.11.0</version>
+        </dependency>
+  
+  
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+     <!-- rs-api -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        
+        <!-- resteasy -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>3.0.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-validator-provider-11</artifactId>
+            <version>3.0.11.Final</version>
+        </dependency>
+
+        <!-- resteasy client -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>3.0.11.Final</version>
+        </dependency>
+        <dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+
+        <!-- jackson -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+        </dependency>
+
+        <!-- yaml -->
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.17</version>
+		</dependency>
+		
+		<!-- log -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<!-- log end -->
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+
+		</dependency>
+
+		<!-- spring aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+  </dependencies>
+</project>

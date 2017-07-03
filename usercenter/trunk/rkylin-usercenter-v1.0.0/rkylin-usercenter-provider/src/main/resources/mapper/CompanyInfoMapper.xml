@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.CompanyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.CompanyInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_SHORT_NAME" property="companyShortName" jdbcType="VARCHAR" />
+    <result column="COMPANY_TYPE" property="companyType" jdbcType="TINYINT" />
+    <result column="MCC" property="mcc" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="CONTACTS" property="contacts" jdbcType="VARCHAR" />
+    <result column="CONTACTS_INFO" property="contactsInfo" jdbcType="VARCHAR" />
+    <result column="REGIST_FINACNCE" property="registFinacnce" jdbcType="VARCHAR" />
+    <result column="MEMBERS" property="members" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+    <result column="BUSLINCE" property="buslince" jdbcType="VARCHAR" />
+    <result column="ACUNT_OPN_LINCE" property="acuntOpnLince" jdbcType="VARCHAR" />
+    <result column="TAXREG_CARD1" property="taxregCard1" jdbcType="VARCHAR" />
+    <result column="TAXREG_CARD2" property="taxregCard2" jdbcType="VARCHAR" />
+    <result column="ORGAN_CERTIFICATE" property="organCertificate" jdbcType="VARCHAR" />
+    <result column="CORPORATE_NAME" property="corporateName" jdbcType="VARCHAR" />
+    <result column="CORPORATE_IDENTITY" property="corporateIdentity" jdbcType="VARCHAR" />
+    <result column="CORPORATE_TEL" property="corporateTel" jdbcType="VARCHAR" />
+    <result column="CORPORATE_MAIL" property="corporateMail" jdbcType="VARCHAR" />
+    <result column="BUS_PLACE_CTF" property="busPlaceCtf" jdbcType="VARCHAR" />
+    <result column="LOAN_CARD" property="loanCard" jdbcType="VARCHAR" />
+    <result column="OTHERINFO1" property="otherinfo1" jdbcType="VARCHAR" />
+    <result column="OTHERINFO2" property="otherinfo2" jdbcType="VARCHAR" />
+    <result column="OTHERINFO3" property="otherinfo3" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, USER_INFO_ID, COMPANY_NAME, COMPANY_SHORT_NAME, COMPANY_TYPE, MCC, POST, FAX, 
+    PROVINCE, CITY, CONTACTS, CONTACTS_INFO, REGIST_FINACNCE, MEMBERS, ADDRESS, WEBSITE, 
+    BUSLINCE, ACUNT_OPN_LINCE, TAXREG_CARD1, TAXREG_CARD2, ORGAN_CERTIFICATE, CORPORATE_NAME, 
+    CORPORATE_IDENTITY, CORPORATE_TEL, CORPORATE_MAIL, BUS_PLACE_CTF, LOAN_CARD, OTHERINFO1, 
+    OTHERINFO2, OTHERINFO3, REMARK, CREATED_TIME, UPDATED_TIME
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_COMPANY_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_COMPANY_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.CompanyInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_COMPANY_INFO (USER_INFO_ID, COMPANY_NAME, COMPANY_SHORT_NAME, 
+      COMPANY_TYPE, MCC, POST, 
+      FAX, PROVINCE, CITY, 
+      CONTACTS, CONTACTS_INFO, REGIST_FINACNCE, 
+      MEMBERS, ADDRESS, WEBSITE, 
+      BUSLINCE, ACUNT_OPN_LINCE, TAXREG_CARD1, 
+      TAXREG_CARD2, ORGAN_CERTIFICATE, CORPORATE_NAME, 
+      CORPORATE_IDENTITY, CORPORATE_TEL, CORPORATE_MAIL, 
+      BUS_PLACE_CTF, LOAN_CARD, OTHERINFO1, 
+      OTHERINFO2, OTHERINFO3, REMARK, 
+      CREATED_TIME, UPDATED_TIME)
+    values (#{userInfoId,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{companyShortName,jdbcType=VARCHAR}, 
+      #{companyType,jdbcType=TINYINT}, #{mcc,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{contactsInfo,jdbcType=VARCHAR}, #{registFinacnce,jdbcType=VARCHAR}, 
+      #{members,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{buslince,jdbcType=VARCHAR}, #{acuntOpnLince,jdbcType=VARCHAR}, #{taxregCard1,jdbcType=VARCHAR}, 
+      #{taxregCard2,jdbcType=VARCHAR}, #{organCertificate,jdbcType=VARCHAR}, #{corporateName,jdbcType=VARCHAR}, 
+      #{corporateIdentity,jdbcType=VARCHAR}, #{corporateTel,jdbcType=VARCHAR}, #{corporateMail,jdbcType=VARCHAR}, 
+      #{busPlaceCtf,jdbcType=VARCHAR}, #{loanCard,jdbcType=VARCHAR}, #{otherinfo1,jdbcType=VARCHAR}, 
+      #{otherinfo2,jdbcType=VARCHAR}, #{otherinfo3,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.CompanyInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_COMPANY_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        USER_INFO_ID,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="companyShortName != null" >
+        COMPANY_SHORT_NAME,
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE,
+      </if>
+      <if test="mcc != null" >
+        MCC,
+      </if>
+      <if test="post != null" >
+        POST,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="contacts != null" >
+        CONTACTS,
+      </if>
+      <if test="contactsInfo != null" >
+        CONTACTS_INFO,
+      </if>
+      <if test="registFinacnce != null" >
+        REGIST_FINACNCE,
+      </if>
+      <if test="members != null" >
+        MEMBERS,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="website != null" >
+        WEBSITE,
+      </if>
+      <if test="buslince != null" >
+        BUSLINCE,
+      </if>
+      <if test="acuntOpnLince != null" >
+        ACUNT_OPN_LINCE,
+      </if>
+      <if test="taxregCard1 != null" >
+        TAXREG_CARD1,
+      </if>
+      <if test="taxregCard2 != null" >
+        TAXREG_CARD2,
+      </if>
+      <if test="organCertificate != null" >
+        ORGAN_CERTIFICATE,
+      </if>
+      <if test="corporateName != null" >
+        CORPORATE_NAME,
+      </if>
+      <if test="corporateIdentity != null" >
+        CORPORATE_IDENTITY,
+      </if>
+      <if test="corporateTel != null" >
+        CORPORATE_TEL,
+      </if>
+      <if test="corporateMail != null" >
+        CORPORATE_MAIL,
+      </if>
+      <if test="busPlaceCtf != null" >
+        BUS_PLACE_CTF,
+      </if>
+      <if test="loanCard != null" >
+        LOAN_CARD,
+      </if>
+      <if test="otherinfo1 != null" >
+        OTHERINFO1,
+      </if>
+      <if test="otherinfo2 != null" >
+        OTHERINFO2,
+      </if>
+      <if test="otherinfo3 != null" >
+        OTHERINFO3,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyShortName != null" >
+        #{companyShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=TINYINT},
+      </if>
+      <if test="mcc != null" >
+        #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsInfo != null" >
+        #{contactsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="registFinacnce != null" >
+        #{registFinacnce,jdbcType=VARCHAR},
+      </if>
+      <if test="members != null" >
+        #{members,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="buslince != null" >
+        #{buslince,jdbcType=VARCHAR},
+      </if>
+      <if test="acuntOpnLince != null" >
+        #{acuntOpnLince,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregCard1 != null" >
+        #{taxregCard1,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregCard2 != null" >
+        #{taxregCard2,jdbcType=VARCHAR},
+      </if>
+      <if test="organCertificate != null" >
+        #{organCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateName != null" >
+        #{corporateName,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateIdentity != null" >
+        #{corporateIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateTel != null" >
+        #{corporateTel,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateMail != null" >
+        #{corporateMail,jdbcType=VARCHAR},
+      </if>
+      <if test="busPlaceCtf != null" >
+        #{busPlaceCtf,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCard != null" >
+        #{loanCard,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo1 != null" >
+        #{otherinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo2 != null" >
+        #{otherinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo3 != null" >
+        #{otherinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.CompanyInfo" >
+    update UC_COMPANY_INFO
+    <set >
+      <if test="userInfoId != null" >
+        USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyShortName != null" >
+        COMPANY_SHORT_NAME = #{companyShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE = #{companyType,jdbcType=TINYINT},
+      </if>
+      <if test="mcc != null" >
+        MCC = #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        POST = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        CONTACTS = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsInfo != null" >
+        CONTACTS_INFO = #{contactsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="registFinacnce != null" >
+        REGIST_FINACNCE = #{registFinacnce,jdbcType=VARCHAR},
+      </if>
+      <if test="members != null" >
+        MEMBERS = #{members,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        WEBSITE = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="buslince != null" >
+        BUSLINCE = #{buslince,jdbcType=VARCHAR},
+      </if>
+      <if test="acuntOpnLince != null" >
+        ACUNT_OPN_LINCE = #{acuntOpnLince,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregCard1 != null" >
+        TAXREG_CARD1 = #{taxregCard1,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregCard2 != null" >
+        TAXREG_CARD2 = #{taxregCard2,jdbcType=VARCHAR},
+      </if>
+      <if test="organCertificate != null" >
+        ORGAN_CERTIFICATE = #{organCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateName != null" >
+        CORPORATE_NAME = #{corporateName,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateIdentity != null" >
+        CORPORATE_IDENTITY = #{corporateIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateTel != null" >
+        CORPORATE_TEL = #{corporateTel,jdbcType=VARCHAR},
+      </if>
+      <if test="corporateMail != null" >
+        CORPORATE_MAIL = #{corporateMail,jdbcType=VARCHAR},
+      </if>
+      <if test="busPlaceCtf != null" >
+        BUS_PLACE_CTF = #{busPlaceCtf,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCard != null" >
+        LOAN_CARD = #{loanCard,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo1 != null" >
+        OTHERINFO1 = #{otherinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo2 != null" >
+        OTHERINFO2 = #{otherinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="otherinfo3 != null" >
+        OTHERINFO3 = #{otherinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.CompanyInfo" >
+    update UC_COMPANY_INFO
+    set USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_SHORT_NAME = #{companyShortName,jdbcType=VARCHAR},
+      COMPANY_TYPE = #{companyType,jdbcType=TINYINT},
+      MCC = #{mcc,jdbcType=VARCHAR},
+      POST = #{post,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      CONTACTS = #{contacts,jdbcType=VARCHAR},
+      CONTACTS_INFO = #{contactsInfo,jdbcType=VARCHAR},
+      REGIST_FINACNCE = #{registFinacnce,jdbcType=VARCHAR},
+      MEMBERS = #{members,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      WEBSITE = #{website,jdbcType=VARCHAR},
+      BUSLINCE = #{buslince,jdbcType=VARCHAR},
+      ACUNT_OPN_LINCE = #{acuntOpnLince,jdbcType=VARCHAR},
+      TAXREG_CARD1 = #{taxregCard1,jdbcType=VARCHAR},
+      TAXREG_CARD2 = #{taxregCard2,jdbcType=VARCHAR},
+      ORGAN_CERTIFICATE = #{organCertificate,jdbcType=VARCHAR},
+      CORPORATE_NAME = #{corporateName,jdbcType=VARCHAR},
+      CORPORATE_IDENTITY = #{corporateIdentity,jdbcType=VARCHAR},
+      CORPORATE_TEL = #{corporateTel,jdbcType=VARCHAR},
+      CORPORATE_MAIL = #{corporateMail,jdbcType=VARCHAR},
+      BUS_PLACE_CTF = #{busPlaceCtf,jdbcType=VARCHAR},
+      LOAN_CARD = #{loanCard,jdbcType=VARCHAR},
+      OTHERINFO1 = #{otherinfo1,jdbcType=VARCHAR},
+      OTHERINFO2 = #{otherinfo2,jdbcType=VARCHAR},
+      OTHERINFO3 = #{otherinfo3,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="   
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	
+	<!-- 读取文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:dubbo.properties</value>
+				<value>classpath:db.properties</value>
+				<value>classpath:redis.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<import resource="classpath:dubbo-config.xml" />
+	<import resource="classpath:dubbo-provider.xml" />
+	<import resource="classpath:spring-config.xml" />
+	<import resource="classpath:userCenter-util-applicationContext.xml"/>
+	<import resource="classpath:spring-mybatis.xml"/>
+	<import resource="classpath:redis-sdr-config.xml"/>
+    <import resource="classpath:account-dubbo-consumer.xml"/>
+    <import resource="classpath:spring-bean.xml"/>
+	 </beans>

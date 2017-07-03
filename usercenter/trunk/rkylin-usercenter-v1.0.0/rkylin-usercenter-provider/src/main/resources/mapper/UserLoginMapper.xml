@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UserLoginMapper">
+	<resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UserLogin">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+		<result column="PWD_SALT" property="pwdSalt" jdbcType="VARCHAR" />
+		<result column="PWD_MD" property="pwdMd" jdbcType="VARCHAR" />
+		<result column="USER_TYPE" property="userType" jdbcType="TINYINT" />
+		<result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+		<result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, USER_INFO_ID, PWD_SALT, PWD_MD, USER_TYPE, LOGIN_NAME, CREATED_TIME,
+		UPDATED_TIME
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from UC_USER_LOGIN
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from UC_USER_LOGIN
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UserLogin">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into UC_USER_LOGIN (USER_INFO_ID, PWD_SALT, PWD_MD,
+		USER_TYPE, LOGIN_NAME, CREATED_TIME,
+		UPDATED_TIME)
+		values (#{userInfoId,jdbcType=BIGINT}, #{pwdSalt,jdbcType=VARCHAR},
+		#{pwdMd,jdbcType=VARCHAR},
+		#{userType,jdbcType=TINYINT}, #{loginName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
+		#{updatedTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.UserLogin">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into UC_USER_LOGIN
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userInfoId != null">
+				USER_INFO_ID,
+			</if>
+			<if test="pwdSalt != null">
+				PWD_SALT,
+			</if>
+			<if test="pwdMd != null">
+				PWD_MD,
+			</if>
+			<if test="userType != null">
+				USER_TYPE,
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME,
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME,
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userInfoId != null">
+				#{userInfoId,jdbcType=BIGINT},
+			</if>
+			<if test="pwdSalt != null">
+				#{pwdSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="pwdMd != null">
+				#{pwdMd,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=TINYINT},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedTime != null">
+				#{updatedTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UserLogin">
+		update UC_USER_LOGIN
+		<set>
+			<if test="userInfoId != null">
+				USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+			</if>
+			<if test="pwdSalt != null">
+				PWD_SALT = #{pwdSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="pwdMd != null">
+				PWD_MD = #{pwdMd,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				USER_TYPE = #{userType,jdbcType=TINYINT},
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UserLogin">
+		update UC_USER_LOGIN
+		set USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+		PWD_SALT = #{pwdSalt,jdbcType=VARCHAR},
+		PWD_MD = #{pwdMd,jdbcType=VARCHAR},
+		USER_TYPE = #{userType,jdbcType=TINYINT},
+		LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+		CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+		UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByUserName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UC_USER_LOGIN
+		where LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+	</select>
+
+    <update id="updateUserPwd" parameterType="com.rongcapital.usercenter.provider.po.UserLogin">
+		update UC_USER_LOGIN
+		<set>
+			
+			<if test="pwdMd != null">
+				PWD_MD = #{pwdMd,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedTime != null">
+				UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

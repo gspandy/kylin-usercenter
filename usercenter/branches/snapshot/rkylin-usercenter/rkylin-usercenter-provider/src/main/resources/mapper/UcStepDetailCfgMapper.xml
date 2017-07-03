@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UcStepDetailCfgMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UcStepDetailCfg" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+    <result column="PRO_ID" property="proId" jdbcType="VARCHAR" />
+    <result column="STEP_KEY" property="stepKey" jdbcType="VARCHAR" />
+    <result column="STEP_KEY_DETAIL" property="stepKeyDetail" jdbcType="VARCHAR" />
+    <result column="IS_EMPTY" property="isEmpty" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+    <result column="MATCH_RULE" property="matchRule" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APP_CODE, PRO_ID, STEP_KEY, STEP_KEY_DETAIL, IS_EMPTY, TYPE, MATCH_RULE, STATUS, 
+    CREATED_TIME, UPDATED_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UC_STEP_DETAIL_CFG
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_STEP_DETAIL_CFG
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_STEP_DETAIL_CFG
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfgExample" >
+    delete from UC_STEP_DETAIL_CFG
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfg" >
+    insert into UC_STEP_DETAIL_CFG (ID, APP_CODE, PRO_ID, 
+      STEP_KEY, STEP_KEY_DETAIL, IS_EMPTY, 
+      TYPE, MATCH_RULE, STATUS, 
+      CREATED_TIME, UPDATED_TIME)
+    values (#{id,jdbcType=BIGINT}, #{appCode,jdbcType=VARCHAR}, #{proId,jdbcType=VARCHAR}, 
+      #{stepKey,jdbcType=VARCHAR}, #{stepKeyDetail,jdbcType=VARCHAR}, #{isEmpty,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{matchRule,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfg" >
+    insert into UC_STEP_DETAIL_CFG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="appCode != null" >
+        APP_CODE,
+      </if>
+      <if test="proId != null" >
+        PRO_ID,
+      </if>
+      <if test="stepKey != null" >
+        STEP_KEY,
+      </if>
+      <if test="stepKeyDetail != null" >
+        STEP_KEY_DETAIL,
+      </if>
+      <if test="isEmpty != null" >
+        IS_EMPTY,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="matchRule != null" >
+        MATCH_RULE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appCode != null" >
+        #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="stepKey != null" >
+        #{stepKey,jdbcType=VARCHAR},
+      </if>
+      <if test="stepKeyDetail != null" >
+        #{stepKeyDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmpty != null" >
+        #{isEmpty,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="matchRule != null" >
+        #{matchRule,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfgExample" resultType="java.lang.Integer" >
+    select count(*) from UC_STEP_DETAIL_CFG
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UC_STEP_DETAIL_CFG
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.appCode != null" >
+        APP_CODE = #{record.appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proId != null" >
+        PRO_ID = #{record.proId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepKey != null" >
+        STEP_KEY = #{record.stepKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepKeyDetail != null" >
+        STEP_KEY_DETAIL = #{record.stepKeyDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEmpty != null" >
+        IS_EMPTY = #{record.isEmpty,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.matchRule != null" >
+        MATCH_RULE = #{record.matchRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdTime != null" >
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null" >
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UC_STEP_DETAIL_CFG
+    set ID = #{record.id,jdbcType=BIGINT},
+      APP_CODE = #{record.appCode,jdbcType=VARCHAR},
+      PRO_ID = #{record.proId,jdbcType=VARCHAR},
+      STEP_KEY = #{record.stepKey,jdbcType=VARCHAR},
+      STEP_KEY_DETAIL = #{record.stepKeyDetail,jdbcType=VARCHAR},
+      IS_EMPTY = #{record.isEmpty,jdbcType=INTEGER},
+      TYPE = #{record.type,jdbcType=INTEGER},
+      MATCH_RULE = #{record.matchRule,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfg" >
+    update UC_STEP_DETAIL_CFG
+    <set >
+      <if test="appCode != null" >
+        APP_CODE = #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proId != null" >
+        PRO_ID = #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="stepKey != null" >
+        STEP_KEY = #{stepKey,jdbcType=VARCHAR},
+      </if>
+      <if test="stepKeyDetail != null" >
+        STEP_KEY_DETAIL = #{stepKeyDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmpty != null" >
+        IS_EMPTY = #{isEmpty,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="matchRule != null" >
+        MATCH_RULE = #{matchRule,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UcStepDetailCfg" >
+    update UC_STEP_DETAIL_CFG
+    set APP_CODE = #{appCode,jdbcType=VARCHAR},
+      PRO_ID = #{proId,jdbcType=VARCHAR},
+      STEP_KEY = #{stepKey,jdbcType=VARCHAR},
+      STEP_KEY_DETAIL = #{stepKeyDetail,jdbcType=VARCHAR},
+      IS_EMPTY = #{isEmpty,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=INTEGER},
+      MATCH_RULE = #{matchRule,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

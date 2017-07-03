@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1 minutes">
+	<!--本地日志输入请修改value值-->
+	<property name="APP_NAME" value="rkylin-usercenter-web" />
+    <!--日志路径-->
+	<property name="LOG_HOME" value="${catalina.base}/logs/${APP_NAME}" />
+
+
+    <!-- 控制台输出 开发使用，生产不要使用 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+		</encoder>
+	</appender>
+	 
+		<!-- error -->
+	<appender name="globalError"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>  <!-- 只记录error级别的日志 -->
+			<onMatch>ACCEPT</onMatch>   
+      <onMismatch>DENY</onMismatch> 
+		</filter>
+		<file>${LOG_HOME}/global/error.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/global/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+
+
+	<!-- rkylin-usercenter-web -->
+<!-- 应用专属 -->
+	<appender name="usercenter"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${APP_NAME}.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${APP_NAME}.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ROP"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/rkylin-usercenter-web.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/rkylin-usercenter-web.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]--[%thread]--[%-5level]--[%logger{30}]--[%msg]%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 记录指定包边的日志,按模块记录日期 -->
+	<logger name="com.rongcapital.usercenter" level="INFO" additivity="true">
+		<appender-ref ref="usercenter" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="globalError" />
+	</logger>
+	<!-- spring 配置日志 -->
+	<logger name="org.springframework" level="INFO" additivity="true">
+		<!-- 开发使用，生产不要打开 -->
+		<appender-ref ref="usercenter" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="globalError" />
+	</logger>
+	<logger name="com.ropapi" level="DEBUG" additivity="false">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="ROP" />
+		<appender-ref ref="globalError" />
+	</logger>
+	
+	
+
+	<root level="ERROR">
+		<!-- 开发使用，生产不要打开 -->
+		<!--
+		<appender-ref ref="stdout" />
+		-->
+		<appender-ref ref="globalError" />
+	</root>
+
+
+</configuration>

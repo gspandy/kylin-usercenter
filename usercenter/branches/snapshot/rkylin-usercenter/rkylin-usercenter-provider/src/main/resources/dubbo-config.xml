@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">
+
+	<!-- <dubbo:application name="rkylin-usercenter-provider" /> <dubbo:protocol 
+		name="dubbo" port="9001" /> <dubbo:registry address="zookeeper://127.0.0.1:2181?client=zkclient" 
+		check="true" file="usercenter_provider.cache"/> <dubbo:consumer timeout="120000" 
+		check="false" /> -->
+
+	<dubbo:application name="${usercenter.dubbo.application.name}" />
+	<dubbo:protocol  name="${usercenter.dubbo.protocol.name}"
+		port="${usercenter.dubbo.protocol.port}" threads="1000" />
+	<dubbo:registry address="${usercenter.dubbo.registry.address}"
+		check="true" />
+	<dubbo:consumer timeout="240000" check="false" />
+	<!-- <dubbo:monitor protocol="registry" /> -->
+</beans>

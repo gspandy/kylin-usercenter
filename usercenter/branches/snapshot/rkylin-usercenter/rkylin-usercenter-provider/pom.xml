@@ -1,0 +1,559 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.rkylin.usercenter</groupId>
+		<artifactId>rkylin-usercenter</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.rkylin.usercenter</groupId>
+	<artifactId>rkylin-usercenter-provider</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>rkylin-usercenter-provider</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.rkylin.usercenter</groupId>
+			<artifactId>rkylin-usercenter-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rkylin.usercenter</groupId>
+			<artifactId>rkylin-usercenter-util</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- 添加zk -->
+
+		<!-- dubbo 服务注册方式 start -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.netty</groupId>
+			<artifactId>netty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<!-- dubbo 服务注册方式 end -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+
+		</dependency>
+
+		<!-- spring aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+
+		</dependency>
+
+
+
+
+
+
+		<!-- log -->
+		<!-- LOGGING begin -->
+
+
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<!-- log4j实际调用slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- common-logging 实际调用slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- java.util.logging 实际调用slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- logback start -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- slf4j绑定到logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- logback end -->
+
+		<!-- LOGGING end -->
+
+
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+
+		</dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
+
+
+
+
+		<!-- json -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>com.netflix.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>1.1.10</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rkylin.redis</groupId>
+			<artifactId>rkylin-redis</artifactId>
+			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<!--EXCEL支持 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<!-- 账户 start -->
+		<dependency>
+			<groupId>com.rkylin.wheatfield</groupId>
+			<artifactId>account-api</artifactId>
+			<version>1.2.2.3</version>
+		</dependency>
+		<!-- 账户 end -->
+
+	</dependencies>
+	<!-- compile -->
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+
+			<resource>
+				<directory>src/main/assembly</directory>
+				<filtering>true</filtering>
+			</resource>
+
+			<!-- <resource> <directory>src/main/assembly/conf</directory> <filtering>true</filtering> 
+				</resource> -->
+
+
+			<resource>
+				<directory>profiles/${profile.active}</directory>
+				<filtering>true</filtering>
+			</resource>
+
+
+		</resources>
+
+
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<id>copy-resources2</id>
+						<phase>validate</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes</outputDirectory>
+							<resources>
+								<resource>
+									<directory>profiles/${profile.active}/conf</directory> <!-- profile -->
+								</resource>
+							</resources>
+						</configuration>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- <plugin> <artifactId>maven-dependency-plugin</artifactId> <executions> 
+				<execution> <id>unpack</id> <phase>package</phase> <goals> <goal>unpack</goal> 
+				</goals> <configuration> <artifactItems> <artifactItem> <artifactId>yc_util</artifactId> 
+				<groupId>com.yc.util</groupId> <version>1.2.0-SNAPSHOT</version> <outputDirectory>${project.build.directory}/dubbo</outputDirectory> 
+				<includes>assembly/**</includes> </artifactItem> </artifactItems> </configuration> 
+				</execution> </executions> </plugin> -->
+
+
+			<!-- 打jar包时候过滤掉dubbo.properties文件，使用最后发布包里conf下的属性文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<excludes>
+						<excludes>**/conf/**</excludes>
+						<excludes>**/assembly.xml</excludes>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptor>src/main/assembly/assembly.xml</descriptor>
+					<appendAssemblyId></appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- test插件, 仅测试名称为*Test的类, 使用支持分组测试的surefire-junit47 driver -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.12.4</version>
+					</dependency>
+
+					<dependency>
+						<groupId>com.google.code.gson</groupId>
+						<artifactId>gson</artifactId>
+						<version>2.2.2</version>
+					</dependency>
+
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<profile.active>local</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>d:/logs</logback.path>
+			</properties>
+
+		</profile>
+		<profile>
+			<id>develop</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+				<profile.active>develop</profile.active>
+				<logback.level>debug</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+
+		</profile>
+		<profile>
+			<id>dev90</id>
+			<properties>
+				<profile.active>dev90</profile.active>
+				<logback.level>debug</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profile.active>test</profile.active>
+				<logback.level>debug</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>test58</id>
+			<properties>
+				<profile.active>test58</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>test59</id>
+			<properties>
+				<profile.active>test59</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>test116</id>
+			<properties>
+				<profile.active>test116</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<properties>
+				<profile.active>uat</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>product</id>
+			<properties>
+				<profile.active>product</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>slb3-93</id>
+			<properties>
+				<profile.active>slb3-93</profile.active>
+				<logback.level>info</logback.level>
+				<logback.path>/mydata/website/dubbo-provider/logs</logback.path>
+			</properties>
+		</profile>
+	</profiles>
+</project>

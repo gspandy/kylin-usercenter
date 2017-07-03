@@ -1,0 +1,7 @@
+caasApiUrl: "http://caas-uat-admin.cssrv.dataengine.com/api/v1"
+sslEnabled: false
+proxyEnabled: false
+proxyHost: "your http proxy host"
+proxyPort: 3182
+appKey: "130626b1fe7447f894cdab30bd5699b5"
+appSecret: "fe62eeae143f4d739f78197d1ccece49"

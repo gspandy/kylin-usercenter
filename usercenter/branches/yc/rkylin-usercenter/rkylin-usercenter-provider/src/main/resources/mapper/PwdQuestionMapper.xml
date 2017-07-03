@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.PwdQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.wallet.po.PwdQuestion" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="QUESTION_NAME" property="questionName" jdbcType="VARCHAR" />
+    <result column="QUESTION_ANSWER" property="questionAnswer" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    ID, USER_INFO_ID, QUESTION_NAME, QUESTION_ANSWER, CREATED_TIME, UPDATED_TIME
+  </sql>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_PWD_QUESTION
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_PWD_QUESTION
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.rongcapital.wallet.po.PwdQuestion" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_PWD_QUESTION (USER_INFO_ID, QUESTION_NAME, QUESTION_ANSWER, 
+      CREATED_TIME, UPDATED_TIME)
+    values (#{userInfoId,jdbcType=BIGINT}, #{questionName,jdbcType=VARCHAR}, #{questionAnswer,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.wallet.po.PwdQuestion" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_PWD_QUESTION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        USER_INFO_ID,
+      </if>
+      <if test="questionName != null" >
+        QUESTION_NAME,
+      </if>
+      <if test="questionAnswer != null" >
+        QUESTION_ANSWER,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="questionName != null" >
+        #{questionName,jdbcType=VARCHAR},
+      </if>
+      <if test="questionAnswer != null" >
+        #{questionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.wallet.po.PwdQuestion" >
+    update UC_PWD_QUESTION
+    <set >
+      <if test="userInfoId != null" >
+        USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="questionName != null" >
+        QUESTION_NAME = #{questionName,jdbcType=VARCHAR},
+      </if>
+      <if test="questionAnswer != null" >
+        QUESTION_ANSWER = #{questionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.wallet.po.PwdQuestion" >
+    update UC_PWD_QUESTION
+    set USER_INFO_ID = #{userInfoId,jdbcType=BIGINT},
+      QUESTION_NAME = #{questionName,jdbcType=VARCHAR},
+      QUESTION_ANSWER = #{questionAnswer,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

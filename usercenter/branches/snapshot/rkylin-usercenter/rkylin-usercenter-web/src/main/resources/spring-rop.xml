@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- streamMarshaller start -->
+	<bean id="marshallingView" class="com.ropapi.view.MarshallingView"  scope="prototype">
+		<property name="marshaller" ref="xStreamMarshaller" />
+                <property name="contentType" value="application/xml;charset=UTF-8" /> 
+	</bean>
+
+	<bean id="xStreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller" scope="prototype">  
+		<property name="autodetectAnnotations" value="true"/>  
+	</bean>
+
+	<!-- <bean id="xStreamXMLDriver" class="com.thoughtworks.xstream.io.xml.XppDriver"> -->
+	<bean id="xStreamXMLDriver" class="com.thoughtworks.xstream.io.xml.DomDriver">
+		<constructor-arg  index="0"> 
+			<bean class="java.lang.String">
+				<constructor-arg index="0" value="UTF-8"/>
+			</bean>
+		</constructor-arg>
+		<constructor-arg index="1"> 
+			<bean class="com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer"> 
+				<constructor-arg index="0" value="_-"/> 
+				<constructor-arg index="1" value="_"/> 
+			</bean> 
+		</constructor-arg> 
+	</bean>
+
+	<bean id="xStreamJSONDriver" class="com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver" />
+	
+	<bean id="xStreamDateConverter" class="com.ropapi.utils.xStreamConverter.XStreamDateConverter"> 
+		<constructor-arg value="yyyy-MM-dd HH:mm:ss"/> 
+	</bean>
+	
+	<bean id="xStreamDoubleConverter" class="com.ropapi.utils.xStreamConverter.XStreamDoubleConverter"/> 
+	
+	<bean id="xStreamStringConverter" class="com.ropapi.utils.xStreamConverter.XStreamStringConverter"/>
+
+	<!-- streamMarshaller end -->
+
+	<!-- security start -->
+	<bean id="securityService" class="com.ropapi.service.impl.SecurityServiceImpl">
+		<property name="userProperties" ref="userProperties"/>
+		<property name="errorResponseService" ref="errorResponseService"/>
+	</bean>
+	<!-- security end -->
+
+	<!-- errorResponseService start -->
+	<bean id="errorResponseService" class="com.ropapi.service.impl.ErrorResponseServiceImpl">
+		<property name="errorCodeProperties" ref="errorCodeProperties"/>
+	</bean>
+	<!-- errorResponseService end -->
+	
+	<bean class="com.ropapi.SpringApplicationContextAware"></bean>
+	<import resource="spring-rop-properties.xml" />
+</beans>
+

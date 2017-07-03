@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false" scan="true" scanPeriod="1 minutes">
+
+    <property name="LOG_HOME" value="${logback.path}/rkylin-usercenter-provider/"/>
+
+    <!-- 控制台输出 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            	<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- error -->
+    <appender name="globalError"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <append>true</append>
+        <file>${LOG_HOME}/global/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/global/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+            
+        </encoder>
+    </appender>
+
+
+    <!-- usercenter -->
+    <appender name="usercenter" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--按天滚动-->
+            <FileNamePattern>${LOG_HOME}/usercenter/rkylin-usercenter-provider-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>300MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <file>${LOG_HOME}/usercenter/rkylin-usercenter-provider.log</file>
+        <append>true</append>
+        <encoder charset="UTF-8">
+            			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+        </encoder>
+    </appender>
+    
+     <!-- userRegiesterInfo -->
+    <appender name="userRegiesterInfo"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <append>true</append>
+        <file>${LOG_HOME}/global/usercenter/rkylin-usercenter-provider-userRegiesterInfo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/global/usercenter/rkylin-usercenter-provider-userRegiesterInfo.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 打印sql -->
+    <appender name="FILE-SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/sql/rkylin-usercenter-provider-sql.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>300MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <file>${LOG_HOME}/sql/rkylin-usercenter-provider-sql.log</file>
+        <append>true</append>
+        <encoder charset="UTF-8">
+            <!-- %-40(%-35logger{35}:%-4line) -->
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%-5level|%logger{30}|%msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- spring 配置日志 -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="globalError"/>
+        <appender-ref ref="usercenter"/>
+    </logger>
+
+    <!-- 项目自己配置日志 -->
+    <logger name="userCenterRegiestLogger" level="INFO" additivity="false">
+        <appender-ref ref="userRegiesterInfo"/>
+    </logger>
+    
+    <logger name="com.rongcapital.usercenter" level="${logback.level}" additivity="false">
+        <appender-ref ref="usercenter"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="globalError"/>
+    </logger>
+    <logger name="com.rkylin.usercenter" level="${logback.level}" additivity="false">
+        <appender-ref ref="usercenter"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="globalError"/>
+    </logger>
+
+    <logger name="druid.sql.Statement" level="debug" additivity="false">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="FILE-SQL"/>
+    </logger>
+
+    <root level="${logback.level}">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="globalError"/>
+    </root>
+    
+
+</configuration>

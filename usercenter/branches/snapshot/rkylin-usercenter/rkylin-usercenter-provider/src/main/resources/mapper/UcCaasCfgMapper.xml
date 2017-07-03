@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UcCaasCfgMapper" >
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UcCaasCfg" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="UC_APP_CODE" property="ucAppCode" jdbcType="VARCHAR" />
+    <result column="CAAS_APP_CODE" property="caasAppCode" jdbcType="VARCHAR" />
+    <result column="APP_DES" property="appDes" jdbcType="VARCHAR" />
+    <result column="CAAS_API_URL" property="caasApiUrl" jdbcType="VARCHAR" />
+    <result column="SSL_ENABLED" property="sslEnabled" jdbcType="BIT" />
+    <result column="PROXY_ENABLED" property="proxyEnabled" jdbcType="BIT" />
+    <result column="PROXY_HOST" property="proxyHost" jdbcType="VARCHAR" />
+    <result column="PROXY_PORT" property="proxyPort" jdbcType="VARCHAR" />
+    <result column="APPKEY" property="appkey" jdbcType="VARCHAR" />
+    <result column="APPSECRET" property="appsecret" jdbcType="VARCHAR" />
+    <result column="SD" property="sd" jdbcType="INTEGER" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="INTEGER" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, UC_APP_CODE, CAAS_APP_CODE, APP_DES, CAAS_API_URL, SSL_ENABLED, PROXY_ENABLED, 
+    PROXY_HOST, PROXY_PORT, APPKEY, APPSECRET, SD, EXPIRE_TIME, CREATED_TIME, UPDATED_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UC_CAAS_CFG
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from UC_CAAS_CFG
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_CAAS_CFG
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfgExample" >
+    delete from UC_CAAS_CFG
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfg" >
+    insert into UC_CAAS_CFG (ID, UC_APP_CODE, CAAS_APP_CODE, 
+      APP_DES, CAAS_API_URL, SSL_ENABLED, 
+      PROXY_ENABLED, PROXY_HOST, PROXY_PORT, 
+      APPKEY, APPSECRET, SD, 
+      EXPIRE_TIME, CREATED_TIME, UPDATED_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{ucAppCode,jdbcType=VARCHAR}, #{caasAppCode,jdbcType=VARCHAR}, 
+      #{appDes,jdbcType=VARCHAR}, #{caasApiUrl,jdbcType=VARCHAR}, #{sslEnabled,jdbcType=BIT}, 
+      #{proxyEnabled,jdbcType=BIT}, #{proxyHost,jdbcType=VARCHAR}, #{proxyPort,jdbcType=VARCHAR}, 
+      #{appkey,jdbcType=VARCHAR}, #{appsecret,jdbcType=VARCHAR}, #{sd,jdbcType=INTEGER}, 
+      #{expireTime,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfg" >
+    insert into UC_CAAS_CFG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ucAppCode != null" >
+        UC_APP_CODE,
+      </if>
+      <if test="caasAppCode != null" >
+        CAAS_APP_CODE,
+      </if>
+      <if test="appDes != null" >
+        APP_DES,
+      </if>
+      <if test="caasApiUrl != null" >
+        CAAS_API_URL,
+      </if>
+      <if test="sslEnabled != null" >
+        SSL_ENABLED,
+      </if>
+      <if test="proxyEnabled != null" >
+        PROXY_ENABLED,
+      </if>
+      <if test="proxyHost != null" >
+        PROXY_HOST,
+      </if>
+      <if test="proxyPort != null" >
+        PROXY_PORT,
+      </if>
+      <if test="appkey != null" >
+        APPKEY,
+      </if>
+      <if test="appsecret != null" >
+        APPSECRET,
+      </if>
+      <if test="sd != null" >
+        SD,
+      </if>
+      <if test="expireTime != null" >
+        EXPIRE_TIME,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ucAppCode != null" >
+        #{ucAppCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caasAppCode != null" >
+        #{caasAppCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appDes != null" >
+        #{appDes,jdbcType=VARCHAR},
+      </if>
+      <if test="caasApiUrl != null" >
+        #{caasApiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sslEnabled != null" >
+        #{sslEnabled,jdbcType=BIT},
+      </if>
+      <if test="proxyEnabled != null" >
+        #{proxyEnabled,jdbcType=BIT},
+      </if>
+      <if test="proxyHost != null" >
+        #{proxyHost,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyPort != null" >
+        #{proxyPort,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null" >
+        #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="sd != null" >
+        #{sd,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfgExample" resultType="java.lang.Integer" >
+    select count(*) from UC_CAAS_CFG
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UC_CAAS_CFG
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ucAppCode != null" >
+        UC_APP_CODE = #{record.ucAppCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caasAppCode != null" >
+        CAAS_APP_CODE = #{record.caasAppCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appDes != null" >
+        APP_DES = #{record.appDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caasApiUrl != null" >
+        CAAS_API_URL = #{record.caasApiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sslEnabled != null" >
+        SSL_ENABLED = #{record.sslEnabled,jdbcType=BIT},
+      </if>
+      <if test="record.proxyEnabled != null" >
+        PROXY_ENABLED = #{record.proxyEnabled,jdbcType=BIT},
+      </if>
+      <if test="record.proxyHost != null" >
+        PROXY_HOST = #{record.proxyHost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proxyPort != null" >
+        PROXY_PORT = #{record.proxyPort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appkey != null" >
+        APPKEY = #{record.appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appsecret != null" >
+        APPSECRET = #{record.appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sd != null" >
+        SD = #{record.sd,jdbcType=INTEGER},
+      </if>
+      <if test="record.expireTime != null" >
+        EXPIRE_TIME = #{record.expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdTime != null" >
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null" >
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UC_CAAS_CFG
+    set ID = #{record.id,jdbcType=BIGINT},
+      UC_APP_CODE = #{record.ucAppCode,jdbcType=VARCHAR},
+      CAAS_APP_CODE = #{record.caasAppCode,jdbcType=VARCHAR},
+      APP_DES = #{record.appDes,jdbcType=VARCHAR},
+      CAAS_API_URL = #{record.caasApiUrl,jdbcType=VARCHAR},
+      SSL_ENABLED = #{record.sslEnabled,jdbcType=BIT},
+      PROXY_ENABLED = #{record.proxyEnabled,jdbcType=BIT},
+      PROXY_HOST = #{record.proxyHost,jdbcType=VARCHAR},
+      PROXY_PORT = #{record.proxyPort,jdbcType=VARCHAR},
+      APPKEY = #{record.appkey,jdbcType=VARCHAR},
+      APPSECRET = #{record.appsecret,jdbcType=VARCHAR},
+      SD = #{record.sd,jdbcType=INTEGER},
+      EXPIRE_TIME = #{record.expireTime,jdbcType=INTEGER},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfg" >
+    update UC_CAAS_CFG
+    <set >
+      <if test="ucAppCode != null" >
+        UC_APP_CODE = #{ucAppCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caasAppCode != null" >
+        CAAS_APP_CODE = #{caasAppCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appDes != null" >
+        APP_DES = #{appDes,jdbcType=VARCHAR},
+      </if>
+      <if test="caasApiUrl != null" >
+        CAAS_API_URL = #{caasApiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sslEnabled != null" >
+        SSL_ENABLED = #{sslEnabled,jdbcType=BIT},
+      </if>
+      <if test="proxyEnabled != null" >
+        PROXY_ENABLED = #{proxyEnabled,jdbcType=BIT},
+      </if>
+      <if test="proxyHost != null" >
+        PROXY_HOST = #{proxyHost,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyPort != null" >
+        PROXY_PORT = #{proxyPort,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null" >
+        APPKEY = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        APPSECRET = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="sd != null" >
+        SD = #{sd,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        EXPIRE_TIME = #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UcCaasCfg" >
+    update UC_CAAS_CFG
+    set UC_APP_CODE = #{ucAppCode,jdbcType=VARCHAR},
+      CAAS_APP_CODE = #{caasAppCode,jdbcType=VARCHAR},
+      APP_DES = #{appDes,jdbcType=VARCHAR},
+      CAAS_API_URL = #{caasApiUrl,jdbcType=VARCHAR},
+      SSL_ENABLED = #{sslEnabled,jdbcType=BIT},
+      PROXY_ENABLED = #{proxyEnabled,jdbcType=BIT},
+      PROXY_HOST = #{proxyHost,jdbcType=VARCHAR},
+      PROXY_PORT = #{proxyPort,jdbcType=VARCHAR},
+      APPKEY = #{appkey,jdbcType=VARCHAR},
+      APPSECRET = #{appsecret,jdbcType=VARCHAR},
+      SD = #{sd,jdbcType=INTEGER},
+      EXPIRE_TIME = #{expireTime,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

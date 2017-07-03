@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongcapital.usercenter.provider.dao.UserInfoMapper" >
+	
+	  <resultMap type="PersonInfo" id="personResultMap">
+        <!-- 属性名和数据库列名映射 -->
+         <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="USER_CNAME" property="userCname" jdbcType="VARCHAR" />
+    <result column="USER_ENAME" property="userEname" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="TINYINT" />
+    <result column="GENDER" property="gender" jdbcType="CHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+    <result column="ID_NUMBER" property="idNumber" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="ID_NUMBER_ADDRESS" property="idNumberAddress" jdbcType="VARCHAR" />
+    <result column="ID_NUMBER_EXPIRE_TIME" property="idNumberExpireTime" jdbcType="VARCHAR" />
+    <result column="ETHNIC" property="ethnic" jdbcType="VARCHAR" />
+    <result column="POLICE_STATION" property="policeStation" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="FIXED_PHONE" property="fixedPhone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="HANDLER_FAX" property="handlerFax" jdbcType="VARCHAR" />
+    <result column="NATIONAL" property="national" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="POLITICAL_STATUS" property="politicalStatus" jdbcType="VARCHAR" />
+    <result column="INDUSTRY" property="industry" jdbcType="VARCHAR" />
+    <result column="PCOMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ATTRIBUTE" property="companyAttribute" jdbcType="VARCHAR" />
+    <result column="COMPANY_PHONE" property="companyPhone" jdbcType="VARCHAR" />
+    <result column="JOB_ATTRIBUTE" property="jobAttribute" jdbcType="VARCHAR" />
+    <result column="OCCUPATION" property="occupation" jdbcType="VARCHAR" />
+    <result column="MARRIAGE" property="marriage" jdbcType="VARCHAR" />
+    <result column="FAMILY_SIZE" property="familySize" jdbcType="TINYINT" />
+    <result column="PERSON_INCOME" property="personIncome" jdbcType="VARCHAR" />
+    <result column="FAMILY_INCOME" property="familyIncome" jdbcType="VARCHAR" />
+    <result column="COME_FROM" property="comeFrom" jdbcType="VARCHAR" />
+    <result column="QQ_NUMBER" property="qqNumber" jdbcType="VARCHAR" />
+    <result column="WECHAT_NUMBER" property="wechatNumber" jdbcType="VARCHAR" />
+    <result column="WEBO_NUMBER" property="weboNumber" jdbcType="VARCHAR" />
+    <result column="ISAUTHOR" property="isauthor" jdbcType="TINYINT" />
+    <result column="OTHERINFO1" property="otherinfo1" jdbcType="VARCHAR" />
+    <result column="OTHERINFO2" property="otherinfo2" jdbcType="VARCHAR" />
+    <result column="OTHERINFO3" property="otherinfo3" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+         
+    </resultMap>
+    <resultMap id="companyInfoMap" type="com.rongcapital.usercenter.provider.po.CompanyInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="CCOMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_SHORT_NAME" property="companyShortName" jdbcType="VARCHAR" />
+    <result column="COMPANY_TYPE" property="companyType" jdbcType="TINYINT" />
+    <result column="MCC" property="mcc" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="CONTACTS" property="contacts" jdbcType="VARCHAR" />
+    <result column="CONTACTS_INFO" property="contactsInfo" jdbcType="VARCHAR" />
+    <result column="REGIST_FINACNCE" property="registFinacnce" jdbcType="VARCHAR" />
+    <result column="MEMBERS" property="members" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+    <result column="BUSLINCE" property="buslince" jdbcType="VARCHAR" />
+    <result column="ACUNT_OPN_LINCE" property="acuntOpnLince" jdbcType="VARCHAR" />
+    <result column="TAXREG_CARD1" property="taxregCard1" jdbcType="VARCHAR" />
+    <result column="TAXREG_CARD2" property="taxregCard2" jdbcType="VARCHAR" />
+    <result column="ORGAN_CERTIFICATE" property="organCertificate" jdbcType="VARCHAR" />
+    <result column="CORPORATE_NAME" property="corporateName" jdbcType="VARCHAR" />
+    <result column="CORPORATE_IDENTITY" property="corporateIdentity" jdbcType="VARCHAR" />
+    <result column="CORPORATE_TEL" property="corporateTel" jdbcType="VARCHAR" />
+    <result column="CORPORATE_MAIL" property="corporateMail" jdbcType="VARCHAR" />
+    <result column="BUS_PLACE_CTF" property="busPlaceCtf" jdbcType="VARCHAR" />
+    <result column="LOAN_CARD" property="loanCard" jdbcType="VARCHAR" />
+    <result column="OTHERINFO1" property="otherinfo1" jdbcType="VARCHAR" />
+    <result column="OTHERINFO2" property="otherinfo2" jdbcType="VARCHAR" />
+    <result column="OTHERINFO3" property="otherinfo3" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="BaseResultMap" type="com.rongcapital.usercenter.provider.po.UserInfo" >
+    <id column="USER_INFO_ID" property="userInfoId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="CAAS_USER_CODE" property="caasUserCode" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="TINYINT" />
+    <result column="STATUS" property="status" jdbcType="TINYINT" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" /> 
+     <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="ID_CARD_NUMBER" property="idCardNumber" jdbcType="VARCHAR" />
+    <result column="IS_IDENTIFY" property="isIdentify" jdbcType="TINYINT" />  
+    <association property="personInfo" javaType="PersonInfo" resultMap="personResultMap"/> 
+    <association property="companyInfo" javaType="CompanyInfo" resultMap="companyInfoMap"/> 
+  </resultMap>
+  
+ 
+  <sql id="Base_Column_List" >
+    USER_INFO_ID, USER_ID,USER_CODE,CAAS_USER_CODE, LOGIN_NAME, USER_TYPE, STATUS, VERSION, CREATED_TIME, UPDATED_TIME
+  </sql>
+  
+ 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from UC_USER_INFO
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </delete>
+ 
+  <insert id="insert" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="userInfoId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into UC_USER_INFO (USER_ID, USER_CODE, CAAS_USER_CODE, USER_TYPE, 
+      STATUS, VERSION, CREATED_TIME, ID_CARD_NUMBER,ORG_CODE,IS_IDENTIFY,
+      UPDATED_TIME)
+    values (#{userId,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{caasUserCode,jdbcType=VARCHAR}, #{userType,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{version,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP},#{idCardNumber,jdbcType=VARCHAR},#{orgCode,jdbcType=VARCHAR},#{isIndentify,jdbcType=TINYINT}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+ 
+  
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userInfoId" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+  
+    insert into UC_USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="orgCode != null" >
+        ORG_CODE,
+      </if>
+      <if test="idCardNumber != null" >
+        ID_CARD_NUMBER,
+      </if>
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="caasUserCode != null" >
+        CAAS_USER_CODE,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNumber != null" >
+        #{idCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caasUserCode != null" >
+        #{caasUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+ 
+ 
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+    update UC_USER_INFO
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caasUserCode != null" >
+        CAAS_USER_CODE = #{caasUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNumber != null" >
+        ID_CARD_NUMBER = #{idCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isIdentify != null" >
+        IS_IDENTIFY = #{isIdentify,jdbcType=TINYINT},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.rongcapital.usercenter.provider.po.UserInfo" >
+    update UC_USER_INFO
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_CODE = #{userCode,jdbcType=VARCHAR},
+      CAAS_USER_CODE = #{caasUserCode,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=TINYINT},
+      STATUS = #{status,jdbcType=TINYINT},
+      VERSION = #{version,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where USER_INFO_ID = #{userInfoId,jdbcType=BIGINT}
+  </update>
+  
+  
+ 
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  
+   SELECT a.*,b.USER_CNAME,b.ID_CARD_NUMBER from UC_USER_INFO a,UC_PERSON_INFO b
+    where a.USER_INFO_ID=b.USER_INFO_ID and a.USER_INFO_ID=#{userInfoId,jdbcType=BIGINT} 
+   
+  </select>
+  
+   <select id="selectByLoginName" resultMap="BaseResultMap"  >
+  
+  <!--  SELECT a.*,b.USER_CNAME,b.ID_NUMBER, b.ETHNIC,b.ID_NUMBER_ADDRESS,b.ID_NUMBER_EXPIRE_TIME,b.NATIONAL,c.ID_CARD_NUMBER,c.IS_IDENTIFY,c.USER_ID,c.USER_CODE,b.MOBILE_PHONE,b.FIXED_PHONE,b.EMAIL from UC_USER_LOGIN a LEFT JOIN UC_PERSON_INFO b
+    ON a.USER_INFO_ID=b.USER_INFO_ID LEFT JOIN UC_USER_INFO c  ON a.USER_INFO_ID=c.USER_INFO_ID  WHERE a.LOGIN_NAME=#{loginName,jdbcType=VARCHAR}  and a.ORG_CODE=#{orgCode,jdbcType=VARCHAR}
+ -->   
+   SELECT a.*,b.*,b.COMPANY_NAME as PCOMPANY_NAME,d.*,d.COMPANY_NAME as CCOMPANY_NAME,c.ID_CARD_NUMBER,c.IS_IDENTIFY,c.USER_ID,c.USER_CODE,c.STATUS,c.CREATED_TIME,c.UPDATED_TIME from UC_USER_LOGIN a LEFT JOIN UC_PERSON_INFO b
+    ON a.USER_INFO_ID=b.USER_INFO_ID  LEFT JOIN UC_COMPANY_INFO  d
+    ON a.`USER_INFO_ID`=d.USER_INFO_ID LEFT JOIN UC_USER_INFO c  ON a.USER_INFO_ID=c.USER_INFO_ID  WHERE a.LOGIN_NAME=#{loginName,jdbcType=VARCHAR}  and a.ORG_CODE=#{orgCode,jdbcType=VARCHAR}
+   
+  </select>
+  
+   <select id="selectByLoginNameAndUserType" resultMap="BaseResultMap"  >
+  
+   
+   SELECT a.*,
+   <if test="1==userType" >
+       d.*,
+   </if>
+   <if test="2==userType" >
+       b.*,
+   </if>
+    c.ID_CARD_NUMBER,c.IS_IDENTIFY,c.USER_ID,c.USER_CODE from UC_USER_LOGIN a LEFT JOIN UC_PERSON_INFO b
+    ON a.USER_INFO_ID=b.USER_INFO_ID  LEFT JOIN UC_COMPANY_INFO  d
+    ON a.`USER_INFO_ID`=d.USER_INFO_ID LEFT JOIN UC_USER_INFO c  ON a.USER_INFO_ID=c.USER_INFO_ID  WHERE a.LOGIN_NAME=#{loginName,jdbcType=VARCHAR}  and a.ORG_CODE=#{orgCode,jdbcType=VARCHAR}
+   
+  </select>
+   
+   <select id="selectByIdNumber" resultMap="BaseResultMap"  >
+  
+   SELECT * from  UC_USER_INFO   WHERE ID_CARD_NUMBER=#{idCardNumber,jdbcType=VARCHAR}
+   
+  </select>
+ 
+  <select id="selectByUserId" resultMap="BaseResultMap"  >
+  
+   SELECT * from  UC_USER_INFO   WHERE  USER_ID = #{userId,jdbcType=VARCHAR} and ORG_CODE= #{orgCode} 
+   
+  </select>
+  
+  
+</mapper>
